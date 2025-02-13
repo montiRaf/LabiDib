@@ -1,6 +1,6 @@
 package it.dib.diadia.ambienti;
 
-import it.dib.diadia.IO;
+import it.dib.diadia.attrezzi.Attrezzo;
 
 /**
  * Stanza Buia: se in questa stanza non è presente un attrezzo con
@@ -9,16 +9,16 @@ import it.dib.diadia.IO;
  */
 
 public class StanzaBuia extends Stanza {
-	private String attrezzoLuminoso;	// nome dell'attrezzo che consente di vedere
+	private Attrezzo attrezzoLuminoso;	// nome dell'attrezzo che consente di vedere
 	
-	public StanzaBuia(String nome, String attrezzo) {
+	public StanzaBuia(String nome, Attrezzo attrezzo) {
 		super(nome);
 		this.attrezzoLuminoso = attrezzo;
 	}
 	
 	@Override
 	public String getDescrizione() {
-		if(this.hasAttrezzo(attrezzoLuminoso) == true) {
+		if(this.hasAttrezzo(attrezzoLuminoso.getNome()) == true) {
 			return super.getDescrizione();
 		}else {
 			return "Qui c'è buio pesto";

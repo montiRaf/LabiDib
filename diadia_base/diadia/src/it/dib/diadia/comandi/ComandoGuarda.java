@@ -1,5 +1,8 @@
 package it.dib.diadia.comandi;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import it.dib.diadia.Partita;
 import it.dib.diadia.ambienti.Stanza;
 import it.dib.diadia.attrezzi.Attrezzo;
@@ -17,9 +20,10 @@ public class ComandoGuarda implements Comando {
 		System.out.println("STANZA CORRENTE: " + stanzaCorrente.getNome());
 		if(stanzaCorrente.getNumStanzeAdiacenti() > 0) {
 			System.out.print("DIREZIONI DISPONIBILI: ");
-			String[] s = stanzaCorrente.getDirezioni();
-			for(int i = 0; i < stanzaCorrente.getNumStanzeAdiacenti(); i++) {
-				System.out.print(s[i] + " | ");
+			Set<String> s = stanzaCorrente.getDirezioni();
+			Iterator<String> it = s.iterator();
+			while(it.hasNext()) {
+				System.out.print(it.next() + " | ");
 			}
 			System.out.println("");
 		}else {
@@ -28,9 +32,10 @@ public class ComandoGuarda implements Comando {
 		
 		if(stanzaCorrente.getNumAttrezzi() > 0) {
 			System.out.print("ATTREZZI: ");
-			Attrezzo[] a = stanzaCorrente.getAttrezzi();
-			for(int i = 0; i < stanzaCorrente.getNumAttrezzi(); i++) {
-				System.out.print(a[i] + " | ");
+			Set<Attrezzo> a = stanzaCorrente.getAttrezzi();
+			Iterator<Attrezzo> it = a.iterator();
+			while(it.hasNext()) {
+				System.out.print(it.next() + " | ");
 			}
 			System.out.println("");
 		}else {

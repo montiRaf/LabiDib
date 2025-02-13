@@ -1,5 +1,7 @@
 package it.dib.diadia.attrezzi;
 
+import java.util.Objects;
+
 import it.dib.diadia.ambienti.Stanza;
 
 /**
@@ -12,7 +14,9 @@ import it.dib.diadia.ambienti.Stanza;
  * @see Stanza
  * @version base
  */
-public class Attrezzo {
+public class Attrezzo implements Comparable{
+
+
 
 	private String nome;
 	private int peso;
@@ -57,6 +61,26 @@ public class Attrezzo {
 	 */
 	public String toString() {
 		return this.getNome()+" ("+this.getPeso()+"kg)";
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode() + this.peso;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Attrezzo a = (Attrezzo)obj;
+		if(this.nome.equalsIgnoreCase(a.getNome()) && this.peso == a.getPeso()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		Attrezzo a = (Attrezzo)o;
+		return this.getNome().compareTo(a.getNome());
 	}
 
 }

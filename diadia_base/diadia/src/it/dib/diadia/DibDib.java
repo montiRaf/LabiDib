@@ -3,6 +3,8 @@ package it.dib.diadia;
 
 import java.util.Scanner;
 
+import it.dib.diadia.ambienti.Labirinto;
+import it.dib.diadia.ambienti.LabirintoBuilder;
 import it.dib.diadia.ambienti.Stanza;
 import it.dib.diadia.attrezzi.Attrezzo;
 import it.dib.diadia.comandi.Comando;
@@ -33,9 +35,9 @@ public class DibDib {
 
 	private Partita partita;
 	private IO io;
-
-	public DibDib(IO io) {
-		this.partita = new Partita();
+	
+	public DibDib(Labirinto lab, IO io) {
+		this.partita = new Partita(lab);
 		this.io = new IOConsole();
 	}
 
@@ -71,7 +73,16 @@ public class DibDib {
 	
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
-		DibDib gioco = new DibDib(io);
+		Labirinto trilocale = new LabirintoBuilder()
+                .addStanzaIniziale("salotto")
+                .addStanza("cucina")
+                .addAttrezzo("pentola", 1)
+                .addStanzaVincente("camera")
+                .addStanza("camera")
+                .addAdiacenza("salotto", "cucina", "nord")
+                .addAdiacenza("cucina", "camera", "est")
+                .getLabirinto();
+		DibDib gioco = new DibDib(trilocale, io);
 		gioco.gioca();
 	}
 }

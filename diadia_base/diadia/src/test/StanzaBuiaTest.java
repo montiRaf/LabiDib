@@ -17,8 +17,8 @@ class StanzaBuiaTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		stanza = new StanzaBuia("Buia Test", "Lanterna");
 		lanterna = new Attrezzo("Lanterna", 1);
+		stanza = new StanzaBuia("Buia Test", lanterna);	
 	}
 
 	@Test

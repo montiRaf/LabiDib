@@ -1,14 +1,23 @@
 package it.dib.diadia.ambienti;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import it.dib.diadia.attrezzi.Attrezzo;
 
 public class Labirinto {
 	
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;
+	private Map<String, Stanza> stanze;	// nome, stanza
 	
 	public Labirinto() {
-		init();
+		//init();
+		stanze = new HashMap<>();
 	}
 
     /**
@@ -53,6 +62,10 @@ public class Labirinto {
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
+	
+	public void setStanzaVincente(Stanza stanza) {
+		this.stanzaVincente = stanza;
+	}
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
 		this.stanzaCorrente = stanzaCorrente;
@@ -61,4 +74,17 @@ public class Labirinto {
 	public Stanza getStanzaCorrente() {
 		return this.stanzaCorrente;
 	}
+	
+	public void addStanza(Stanza stanza) {
+		stanze.put(stanza.getNome().toLowerCase(), stanza);
+	}
+
+	public Map<String, Stanza> getStanze() {
+		return stanze;
+	}
+	
+	public Stanza getStanza(String nome) {
+		return stanze.get(nome.toLowerCase());
+	}
+	
 }
